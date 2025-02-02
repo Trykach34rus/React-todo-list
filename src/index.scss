@@ -1,0 +1,125 @@
+/* обнуляем все настройки по умолчанию */
+* {
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+/* меняет подсчет ширины блока для удобства */
+*,
+*:before,
+*:after {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+/* убираем линии обводки у браузеров */
+:focus,
+:active {
+	outline: none;
+}
+a:focus,
+a:active {
+	outline: none;
+}
+/* делаем значения блочными */
+nav,
+footer,
+header,
+aside {
+	display: block;
+}
+/* уравниваем поведение шрифтов и элементов для разных браузеров */
+html,
+body {
+	width: 100%;
+	font-size: 100%;
+	line-height: 1;
+	font-size: 14px;
+	-ms-text-size-adjust: 100%;
+	-mos-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+	overflow-x: hidden;
+}
+/* просим теги наследовать семейство шрифта */
+input,
+button,
+textarea {
+	font-family: inherit;
+}
+/* убираем некоторые особенности в разных браузерах */
+input::-ms-clear {
+	display: none;
+}
+button {
+	cursor: pointer;
+}
+button::-moz-focus-inner {
+	padding: 0;
+	border: 0;
+}
+a,
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+ul li {
+	list-style: none;
+}
+img {
+	vertical-align: top;
+}
+/* обнуляем заголовки h */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-size: inherit;
+	font-weight: 400;
+}
+
+/* ------------------------------------ */
+
+.light {
+	--bg-color: #f7f7f7;
+	--text-color: #252525;
+	--complete-color: #25252580;
+}
+.dark {
+	--bg-color: #252525;
+	--text-color: #f7f7f7;
+	--complete-color: #ffffff80;
+}
+
+.body {
+	font-family: 'Kanit', serif;
+	background-color: var(--bg-color);
+	color: var(--text-color);
+	width: 100%;
+	height: 100vh;
+}
+.container {
+	max-width: 750px;
+	margin: 0 auto;
+	position: relative;
+	min-height: 100vh;
+}
+header {
+	padding-top: 40px;
+	padding-bottom: 30px;
+}
+.title {
+	font-size: 26px;
+	text-transform: uppercase;
+	font-weight: 500;
+	line-height: 38.87px;
+	text-align: center;
+	margin-bottom: 18px;
+}
+.todo-container {
+	max-width: 520px;
+	margin: 0 auto;
+}

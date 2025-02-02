@@ -1,0 +1,59 @@
+.root {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 17px 0;
+	border-bottom: 1px solid #6b63ff72;
+	&:hover {
+		.right {
+			opacity: 1;
+		}
+	}
+	&.complete {
+		.checkbox {
+			background: #6c63ff;
+			svg {
+				opacity: 1;
+			}
+		}
+		h2 {
+			color: var(--complete-color);
+			text-decoration: line-through;
+		}
+	}
+	.left {
+		display: flex;
+		align-items: center;
+		gap: 17px;
+	}
+	.checkbox {
+		width: 26px;
+		height: 26px;
+		border-radius: 2px;
+		border: 1px solid #6c63ff;
+		transition: all 0.3s ease 0s;
+		svg {
+			opacity: 0;
+			transition: all 0.3s ease 0s;
+		}
+	}
+	h2 {
+		font-size: 20px;
+		font-weight: 500;
+		line-height: 20px;
+		text-transform: uppercase;
+		transition: all 0.3s ease 0s;
+	}
+	.right {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		opacity: 0;
+		transition: all 0.3s ease 0s;
+	}
+	.icon {
+		width: 18px;
+		height: 18px;
+		background: none;
+	}
+}
