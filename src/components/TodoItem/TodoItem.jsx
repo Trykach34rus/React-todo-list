@@ -1,6 +1,15 @@
 import classNames from 'classnames'
 import st from './TodoItem.module.scss'
-export default function TodoItem({ item, deleteTodo, completeTodo }) {
+export default function TodoItem({
+	item,
+	deleteTodo,
+	completeTodo,
+	startEditing,
+	editId,
+	editText,
+	setEditText,
+	updateTodoText,
+}) {
 	return (
 		<div className={item.complete ? classNames(st.root, st.complete) : st.root}>
 			<div className={st.left}>
@@ -22,10 +31,27 @@ export default function TodoItem({ item, deleteTodo, completeTodo }) {
 						/>
 					</svg>
 				</button>
-				<h2>{item.title}</h2>
+				{editId === item.id ? (
+					<input
+						type='text'
+						value={editText}
+						onChange={e => setEditText(e.target.value)}
+						onBlur={() => updateTodoText(item.id, editText)}
+						onKeyDown={e => {
+							if (e.key === 'Enter') {
+								updateTodoText(item.id, editText)
+							}
+						}}
+					/>
+				) : (
+					<h2>{item.title}</h2>
+				)}
 			</div>
 			<div className={st.right}>
-				<button className={st.icon}>
+				<button
+					className={st.icon}
+					onClick={() => startEditing(item.id, item.title)}
+				>
 					<svg
 						width='18'
 						height='18'

@@ -1,19 +1,24 @@
 import classNames from 'classnames'
 import { useState } from 'react'
 import st from './Modal.module.scss'
+
 export default function Modal({ addTodo }) {
 	const [open, setOpen] = useState(false)
 	const [text, setText] = useState('')
+
 	function openModal() {
 		setOpen(true)
 	}
+
 	function closeModal() {
 		setOpen(false)
 	}
+
 	function handleSubmit() {
 		addTodo(text)
 		closeModal()
 	}
+
 	return (
 		<div className={st.root}>
 			<button className={st.circle} onClick={openModal}>
