@@ -1,5 +1,7 @@
 import classNames from 'classnames'
+import { ITodoItem } from '../../types.ts'
 import st from './TodoItem.module.scss'
+
 export default function TodoItem({
 	item,
 	deleteTodo,
@@ -9,7 +11,7 @@ export default function TodoItem({
 	editText,
 	setEditText,
 	updateTodoText,
-}) {
+}: ITodoItem) {
 	return (
 		<div className={item.complete ? classNames(st.root, st.complete) : st.root}>
 			<div className={st.left}>

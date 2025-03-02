@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import dark from '../../assets/dark.svg'
 import light from '../../assets/light.svg'
+import { FilterT, IFilter, Theme } from '../../types'
 import st from './Filter.module.scss'
 
 export default function Filter({
@@ -8,16 +9,18 @@ export default function Filter({
 	changeTheme,
 	handleSearch,
 	setFilter,
-}) {
-	const [inputValue, setInputValue] = useState('')
+}: IFilter) {
+	const [inputValue, setInputValue] = useState<string>('')
 
-	function handleInputChange(event) {
-		setInputValue(event.target.value)
-		handleSearch(event.target.value)
+	function handleInputChange(event: React.SyntheticEvent) {
+		const input = event.target as HTMLInputElement
+		setInputValue(input.value)
+		handleSearch(input.value)
 	}
 
-	function handleFilterChange(event) {
-		setFilter(event.target.value)
+	function handleFilterChange(event: React.SyntheticEvent) {
+		const input = event.target as HTMLSelectElement
+		setFilter(input.value as FilterT)
 	}
 
 	return (
@@ -43,12 +46,12 @@ export default function Filter({
 				</svg>
 			</div>
 			<select onChange={handleFilterChange}>
-				<option value='All'>All</option>
-				<option value='Complete'>Complete</option>
-				<option value='Incomplete'>Incomplete</option>
+				<option value={FilterT.all}>All</option>
+				<option value={FilterT.complete}>Complete</option>
+				<option value={FilterT.incomplete}>Incomplete</option>
 			</select>
 			<button onClick={changeTheme}>
-				<img src={theme === 'light' ? light : dark} alt='' />
+				<img src={theme === Theme.light ? light : dark} alt='' />
 			</button>
 		</div>
 	)

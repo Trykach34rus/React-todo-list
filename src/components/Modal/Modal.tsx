@@ -1,20 +1,21 @@
 import classNames from 'classnames'
 import { useState } from 'react'
+import { IModal } from '../../types'
 import st from './Modal.module.scss'
 
-export default function Modal({ addTodo }) {
-	const [open, setOpen] = useState(false)
-	const [text, setText] = useState('')
+export default function Modal({ addTodo }: IModal) {
+	const [open, setOpen] = useState<boolean>(false)
+	const [text, setText] = useState<string>('')
 
-	function openModal() {
+	function openModal(): void {
 		setOpen(true)
 	}
 
-	function closeModal() {
+	function closeModal(): void {
 		setOpen(false)
 	}
 
-	function handleSubmit() {
+	function handleSubmit(): void {
 		addTodo(text)
 		closeModal()
 	}

@@ -1,35 +1,36 @@
 import { useEffect, useState } from 'react'
-import Empty from './components/Empty/Empty'
-import Filter from './components/Filter/Filter'
-import Modal from './components/Modal/Modal'
-import TodoItem from './components/TodoItem/TodoItem'
-import { getSaveList } from './utils'
+import Empty from './components/Empty/Empty.tsx'
+import Filter from './components/Filter/Filter.tsx'
+import Modal from './components/Modal/Modal.tsx'
+import TodoItem from './components/TodoItem/TodoItem.tsx'
+import { FilterT, Theme, Todo } from './types.ts'
+import { getSaveList } from './utils.ts'
 
 function App() {
-	const [theme, setTheme] = useState('light')
-	const [list, setList] = useState(getSaveList())
-	const [search, setSearch] = useState('')
-	const [filter, setFilter] = useState('All')
-	const [editId, setEditId] = useState(null)
-	const [editText, setEditText] = useState('')
+	const [theme, setTheme] = useState<Theme>(Theme.light)
+	const [list, setList] = useState<Todo[]>(getSaveList())
+	const [search, setSearch] = useState<string>('')
+	const [filter, setFilter] = useState<FilterT>(FilterT.all)
+	const [editId, setEditId] = useState<number | null>(null)
+	const [editText, setEditText] = useState<string>('')
 
 	useEffect(() => {
 		localStorage.setItem('list', JSON.stringify(list))
 	}, [list])
 
-	function changeTheme() {
-		setTheme(prev => (prev === 'light' ? 'dark' : 'light'))
+	function changeTheme(): void {
+		setTheme(prev => (prev === Theme.light ? Theme.dark : Theme.light))
 	}
 
-	function addTodo(text) {
+	function addTodo(text: string): void {
 		setList(prev => [...prev, { id: Date.now(), title: text, complete: false }])
 	}
 
-	function deleteTodo(id) {
+	function deleteTodo(id: number): void {
 		setList(prev => prev.filter(item => item.id !== id))
 	}
 
-	function completeTodo(id) {
+	function completeTodo(id: number): void {
 		setList(prev =>
 			prev.map(item =>
 				item.id === id ? { ...item, complete: !item.complete } : item
@@ -37,16 +38,16 @@ function App() {
 		)
 	}
 
-	function handleSearch(value) {
+	function handleSearch(value: string): void {
 		setSearch(value.toLowerCase())
 	}
 
-	function startEditing(id, text) {
+	function startEditing(id: number, text: string): void {
 		setEditId(id)
 		setEditText(text)
 	}
 
-	function updateTodoText(id, newText) {
+	function updateTodoText(id: number, newText: string): void {
 		setList(prev =>
 			prev.map(item => (item.id === id ? { ...item, title: newText } : item))
 		)
@@ -54,7 +55,7 @@ function App() {
 		setEditText('')
 	}
 
-	const filteredList = list
+	const filteredList: Todo[] = list
 		.filter(item =>
 			filter === 'Complete'
 				? item.complete
@@ -65,7 +66,7 @@ function App() {
 		.filter(item => item.title.toLowerCase().includes(search))
 
 	return (
-		<div className={theme === 'light' ? 'body light' : 'body dark'}>
+		<div className={theme === Theme.light ? 'body light' : 'body dark'}>
 			<div className='container'>
 				<header>
 					<h1 className='title'>Todo List</h1>
